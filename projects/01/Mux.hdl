@@ -5,6 +5,16 @@
 
 /** 
  * Multiplexor. If sel == 1 then out = b else out = a.
+ 
+    sel   a     b     out       sel && b  !sel && a
+    0     0     0     0         0         0
+    0     0     1     0         0         0
+    0     1     0     1         0         1
+    0     1     1     1         0         1
+    1     0     0     0         0         0
+    1     0     1     1         1         0
+    1     1     0     0         0         0
+    1     1     1     1         1         0
  */
 
 CHIP Mux {
@@ -12,5 +22,8 @@ CHIP Mux {
     OUT out;
 
     PARTS:
-    // Put your code here.
+    Not(in=sel, out=nsel);
+    And(a=sel, b=b, out=c1);
+    And(a=nsel, b=a, out=c2);
+    Or(a=c1, b=c2, out=out);
 }

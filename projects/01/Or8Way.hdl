@@ -2,7 +2,7 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/01/Or8Way.hdl
-
+
 /**
  * 8-way Or gate: out = in[0] Or in[1] Or ... Or in[7].
  */
@@ -12,5 +12,11 @@ CHIP Or8Way {
     OUT out;
 
     PARTS:
-    // Put your code here.
+    Or(a=in[0], b=in[1], out=c1);
+    Or(a=in[2], b=in[3], out=c2);
+    Or(a=in[4], b=in[5], out=c3);
+    Or(a=in[6], b=in[7], out=c4);
+    Or(a=c1, b=c2, out=c5);
+    Or(a=c3, b=c4, out=c6);
+    Or(a=c5, b=c6, out=out);
 }
